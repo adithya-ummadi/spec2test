@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#2563eb" />
+  <title>Spec2Test — AI-Powered Requirements Quality Gate</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Top bar ──────────────────────────────────────────────────────────── -->
+  <header class="topbar" role="banner">
+    <div class="topbar-left">
+      <div class="topbar-logo" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="28" height="28" rx="6" fill="#2563eb"/>
+          <path d="M7 9h14M7 14h9M7 19h11" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="21" cy="19" r="3" fill="#0ea5e9"/>
+        </svg>
+      </div>
+      <div class="topbar-brand">
+        <span class="topbar-name">Spec<strong>2</strong>Test</span>
+        <span class="topbar-tagline">AI-Powered Requirements Quality Gate</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode" title="Switch to dark mode">☾</button>
+    </div>
+  </header>
+
+  <!-- ── Dashboard body: sidebar + main ──────────────────────────────────── -->
+  <div class="dashboard">
+
+    <!-- ── Left sidebar nav ───────────────────────────────────────────────── -->
+    <nav class="sidebar" aria-label="Main navigation">
+      <div class="sidebar-brand">
+        <svg class="sidebar-logo-icon" width="22" height="22" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect width="28" height="28" rx="6" fill="#2563eb"/>
+          <path d="M7 9h14M7 14h9M7 19h11" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="21" cy="19" r="3" fill="#0ea5e9"/>
+        </svg>
+        <span class="sidebar-brand-name">Spec<strong>2</strong>Test</span>
+      </div>
+      <div class="sidebar-section-label">Navigation</div>
+      <ul class="sidebar-nav" role="list">
+        <li>
+          <button class="sidebar-item sidebar-item--active" data-view="documents" aria-current="page">
+            <svg class="sidebar-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4a2 2 0 0 1 2-2h5l5 5v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4z"/><polyline points="11 2 11 7 16 7"/></svg>
+            <span class="sidebar-label">Documents</span>
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-item" data-view="requirements">
+            <svg class="sidebar-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="2"/><polyline points="7 10 9 12 13 8"/></svg>
+            <span class="sidebar-label">Requirements</span>
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-item" data-view="analysis">
+            <svg class="sidebar-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="6"/><line x1="13.5" y1="13.5" x2="17" y2="17"/><line x1="7" y1="9" x2="11" y2="9"/><line x1="9" y1="7" x2="9" y2="11"/></svg>
+            <span class="sidebar-label">Analysis</span>
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-item" data-view="refinement">
+            <svg class="sidebar-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l5 5-9 9H3v-5L12 3z"/></svg>
+            <span class="sidebar-label">Refinement</span>
+          </button>
+        </li>
+        <li>
+          <button class="sidebar-item" data-view="traceability">
+            <svg class="sidebar-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="10" r="2"/><circle cx="15" cy="5" r="2"/><circle cx="15" cy="15" r="2"/><line x1="7" y1="10" x2="13" y2="6"/><line x1="7" y1="10" x2="13" y2="14"/></svg>
+            <span class="sidebar-label">Traceability</span>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ── Main workspace ─────────────────────────────────────────────────── -->
+    <main class="workspace" id="workspace">
+
+      <!-- ── Documents view (default) ─────────────────────────────────────── -->
+      <section class="view" id="view-documents" aria-label="Documents">
+        <div class="view-header">
+          <h2 class="view-title">Documents</h2>
+          <p class="view-subtitle">Upload a specification document to extract test requirements.</p>
+        </div>
+
+        <div class="view-content">
+          <form id="upload-form" novalidate class="upload-card">
+            <div class="drop-zone" id="drop-zone">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="17 8 12 3 7 8"/>
+                <line x1="12" y1="3" x2="12" y2="15"/>
+              </svg>
+              <p class="drop-label">Drag &amp; drop your file here, or <label class="file-link" for="file-input">browse</label></p>
+              <p class="drop-hint">Supported formats: PDF, DOCX, TXT, Markdown (.md)</p>
+              <input
+                id="file-input"
+                type="file"
+                accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown"
+                hidden
+              />
+            </div>
+
+            <div id="selected-file" class="selected-file" hidden>
+              <span id="selected-name"></span>
+              <button type="button" id="clear-file" class="clear-btn" aria-label="Remove selected file" title="Remove selected file">&times;</button>
+            </div>
+
+            <button type="submit" id="upload-btn" class="btn-primary" disabled>Upload &amp; Extract</button>
+          </form>
+
+          <div id="status" role="status" aria-live="polite"></div>
+
+          <div id="result-card" class="result-card" hidden>
+            <h2>Upload Successful</h2>
+            <dl>
+              <dt>Filename</dt>
+              <dd id="result-filename"></dd>
+              <dt>Requirements found</dt>
+              <dd id="result-count"></dd>
+            </dl>
+            <button type="button" id="view-reqs-btn" class="btn-secondary">View requirements</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Requirements view ─────────────────────────────────────────────── -->
+      <section class="view view--hidden" id="view-requirements" aria-label="Requirements">
+        <div class="view-header">
+          <h2 class="view-title">Requirements</h2>
+          <p class="view-subtitle">Review extracted requirements, run analysis, or enter demo mode.</p>
+        </div>
+
+        <div class="view-content">
+          <div id="requirements-section">
+            <div id="req-section-toolbar" class="req-section-toolbar">
+              <div id="req-status" role="status" aria-live="polite"></div>
+              <button type="button" id="traceability-btn" class="btn-secondary" hidden>Traceability matrix</button>
+            </div>
+            <ul id="req-list" class="req-list" hidden></ul>
+
+            <div class="analyze-btn-row">
+              <button type="button" id="analyze-btn" class="btn-primary analyze-btn-main" hidden>Analyze requirements</button>
+              <button type="button" id="demo-mode-btn" class="btn-demo" hidden aria-label="Open Demo mode — generates illustrative findings locally without calling AI">
+                <span class="btn-demo-icon" aria-hidden="true">⚡</span> Demo mode
+              </button>
+            </div>
+
+            <div id="analyze-status" role="status" aria-live="polite"></div>
+            <div id="analyze-result" class="analyze-result" hidden></div>
+
+            <!-- Demo mode panel — generated locally, no API calls -->
+            <div id="demo-panel" class="demo-panel" hidden aria-live="polite"></div>
+
+            <div id="req-detail" class="req-detail" hidden aria-live="polite">
+              <div class="req-detail-header">
+                <h3 class="req-detail-title">Requirement detail</h3>
+                <button type="button" id="req-detail-close" class="req-detail-close" aria-label="Close detail">&times;</button>
+              </div>
+              <div id="req-detail-status" role="status"></div>
+              <div id="req-detail-body" hidden>
+                <div class="req-detail-meta">
+                  <span class="req-detail-label">Status</span>
+                  <span id="req-detail-badge" class="req-badge"></span>
+                </div>
+                <p id="req-detail-text" class="req-detail-text"></p>
+                <h4 class="req-detail-findings-heading">Findings</h4>
+                <div id="req-detail-findings"></div>
+
+                <h4 class="req-detail-section-heading">Refinement Results</h4>
+                <div id="req-detail-refinement">
+                  <div id="req-refinement-status" role="status"></div>
+                  <div id="req-refinement-body" hidden>
+                    <div class="refinement-block">
+                      <h5 class="refinement-block-heading">Refined Requirement</h5>
+                      <p id="refinement-req-text" class="refinement-text"></p>
+                    </div>
+                    <div class="refinement-block">
+                      <h5 class="refinement-block-heading">Acceptance Criteria</h5>
+                      <ul id="refinement-criteria-list" class="refinement-list"></ul>
+                    </div>
+                    <div class="refinement-block">
+                      <h5 class="refinement-block-heading">Test Cases</h5>
+                      <div id="refinement-test-cases"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Analysis view ─────────────────────────────────────────────────── -->
+      <section class="view view--hidden" id="view-analysis" aria-label="Analysis">
+        <div class="view-header">
+          <h2 class="view-title">Analysis</h2>
+          <p class="view-subtitle">AI-powered analysis results for all extracted requirements.</p>
+        </div>
+        <div class="view-content">
+          <div id="analysis-view-body">
+            <p class="view-empty-hint">Run "Analyze requirements" from the Requirements view to see results here.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Refinement view ───────────────────────────────────────────────── -->
+      <section class="view view--hidden" id="view-refinement" aria-label="Refinement">
+        <div class="view-header">
+          <h2 class="view-title">Refinement</h2>
+          <p class="view-subtitle">Refined requirements, acceptance criteria, and test cases.</p>
+        </div>
+        <div class="view-content">
+          <div id="refinement-view-body">
+            <p class="view-empty-hint">Select a requirement from the Requirements view to see its refinement here.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Traceability view ─────────────────────────────────────────────── -->
+      <section class="view view--hidden" id="view-traceability" aria-label="Traceability">
+        <div class="view-header">
+          <h2 class="view-title">Traceability</h2>
+          <p class="view-subtitle">Full traceability matrix linking requirements to findings, refinements, and test cases.</p>
+        </div>
+        <div class="view-content">
+          <div id="traceability-section">
+            <div class="traceability-header">
+              <h3 class="traceability-title">Traceability Matrix</h3>
+              <button type="button" id="traceability-back-btn" class="btn-secondary">&#8592; Back to requirements</button>
+            </div>
+            <div id="traceability-status" role="status" aria-live="polite"></div>
+            <div id="traceability-table-wrap" class="traceability-table-wrap" hidden>
+              <table class="traceability-table" aria-label="Traceability matrix">
+                <thead>
+                  <tr>
+                    <th>Requirement ID</th>
+                    <th>Findings</th>
+                    <th>Refined Requirement</th>
+                    <th>Acceptance Criteria</th>
+                    <th>Test Cases</th>
+                  </tr>
+                </thead>
+                <tbody id="traceability-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div><!-- /.dashboard -->
+
+  <script src="app.js"></script>
+</body>
+</html>
