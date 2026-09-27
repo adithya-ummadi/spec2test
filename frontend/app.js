@@ -1,8 +1,9 @@
 'use strict';
 
-const API_BASE     = 'http://localhost:8000/api/documents';
-const REQ_API_BASE = 'http://localhost:8000/api/requirements';
-const UPLOAD_URL   = `${API_BASE}/upload`;
+const API_BASE_URL = 'https://spec2test-cdk7.onrender.com';
+const API_BASE = 'https://spec2test-cdk7.onrender.com/api/documents';
+const REQ_API_BASE = 'https://spec2test-cdk7.onrender.com/api/requirements';
+const UPLOAD_URL = `${API_BASE}/upload`;
 const ALLOWED_TYPES = new Set([
   'application/pdf',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
